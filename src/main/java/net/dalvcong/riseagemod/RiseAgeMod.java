@@ -1,5 +1,6 @@
 package net.dalvcong.riseagemod;
 
+import net.dalvcong.riseagemod.block.ModBlocks;
 import net.dalvcong.riseagemod.item.ModItems;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.neoforged.api.distmarker.Dist;
@@ -33,6 +34,7 @@ public class RiseAgeMod {
         NeoForge.EVENT_BUS.register(this);
 
         ModItems.register(modEventBus);
+        ModBlocks.register(modEventBus);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
@@ -49,6 +51,10 @@ public class RiseAgeMod {
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
         if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
             event.accept(ModItems.FIRSTITEM);
+        }
+
+        if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
+            event.accept(ModBlocks.COAL_STOVE);
         }
     }
 
